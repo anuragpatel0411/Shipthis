@@ -1,0 +1,88 @@
+<div class="main container">
+    <div class="title">
+        My Blogs
+        <span class="pull-right logout" (click)="logout()">Logout</span>
+        <span class="pull-right newblog" (click)="open(content)">Add New Blog</span>
+    </div>
+    <div class="body">
+        <div class="msg" *ngIf="!blogs.length">No blogs now</div>
+        <div class="blog" *ngFor="let blog of blogs">
+            <div class="block">
+                <div class="blog-data">
+                    <div class="blog-title">
+                        {{blog.title}}
+                    </div>
+                    <div class="row">
+                        <img src="{{blog.imageUrl}}" width="100%" height="100%" *ngIf="blog.imageUrl" class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                        <div class="blog-description col">
+                            {{blog.description}}
+                        </div>
+                    </div>
+                    <div class="blog-footer row">
+                        <div class="date col-3"><i class="fa fa-clock-o"></i>{{blog.date | date:'short'}}</div>
+                        <!-- <div class="user col-3">{{blog.userId}}</div> -->
+                        <div class="user col-3"><i class="fa fa-user"></i>DEMO USER</div>
+                        <div class="buttons col-6">
+                            <span class="delete float-right" (click)="deleteBlog(blog._id)">Delete</span>
+                            <span class="edit float-right" (click)="open(contentedit)">Edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- edit blog -->
+            <ng-template #contentedit let-modal class="toggle-Wrapper">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Edit Blog</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <b>Blog Title:</b>
+                        <input type="text" class="form-control" placeholder="Blog Title" [(ngModel)]="blog.title">
+                    </div>
+                    <div class="form-group">
+                        <b>Blog Description:</b>
+                        <textarea class="form-control" placeholder="Blog Description" [(ngModel)]="blog.description" rows="6"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <b>Image URL</b>
+                        <input type="text" class="form-control" placeholder="Image URL" [(ngModel)]="blog.imageUrl">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="updateBlog(blog); modal.close('Save click')">Update Blog</button>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- add new blog -->
+        <ng-template #content let-modal class="toggle-Wrapper">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">New Blog</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <b>Blog Title:</b>
+                    <input type="text" class="form-control" placeholder="Blog Title" [(ngModel)]="blog.title">
+                </div>
+                <div class="form-group">
+                    <b>Blog Description:</b>
+                    <textarea class="form-control" placeholder="Blog Description" [(ngModel)]="blog.description" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <b>Image URL</b>
+                    <input type="text" class="form-control" placeholder="Image URL" [(ngModel)]="blog.imageUrl">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="addBlog(); modal.close('Save click')">Add Blog</button>
+            </div>
+        </ng-template>
+
+    </div>
+</div>

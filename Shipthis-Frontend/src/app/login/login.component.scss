@@ -1,0 +1,36 @@
+.main{
+    .box{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -150px;
+        margin-left: -150px;
+        padding: 15px;
+        border-radius: 10px;
+        width: 300px;
+        background: #fff;
+        .login{
+            font-size: 22px;
+            font-weight: 600;
+            color: #f45144;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .form-group{
+            text-align: center;
+            .form-input{
+                width: 100%;
+                border: 1px solid #c7c7c7;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            input[type=submit]{
+                width: fit-content;
+                padding: 5px 10px;
+                background: #f45144;
+                color: #fff;
+                border: 0;
+            }
+        }
+    }
+}
